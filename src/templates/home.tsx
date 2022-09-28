@@ -30,6 +30,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = (
   };
 };
 
+const GOOGLE_API_KEY = import.meta.env.YEXT_PUBLIC_GOOGLE_API_KEY;
+
 const Home: Template<TemplateRenderProps> = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -39,6 +41,7 @@ const Home: Template<TemplateRenderProps> = () => {
 
   return (
     <PageLayout>
+      <div>{GOOGLE_API_KEY}</div>
       <div className="flex items-start">
         <SearchBar customCssClasses={{ searchBarContainer: "grow" }} />
         <button className="pt-2 pl-2" onClick={() => handleButtonClick(true)}>
