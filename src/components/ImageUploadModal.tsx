@@ -86,7 +86,7 @@ const ImageUploadModal = ({ isOpen, setIsOpen }: ImageUploadModalProps) => {
         filter: {
           kind: "disjunction",
           combinator: FilterCombinator.OR,
-          filters: imageTags.map((tag) => ({
+          filters: imageTags.slice(0).map((tag) => ({
             fieldId: "c_imageSearchTags",
             kind: "fieldValue",
             value: tag,
@@ -96,6 +96,7 @@ const ImageUploadModal = ({ isOpen, setIsOpen }: ImageUploadModalProps) => {
       };
       searchActions.setStaticFilters([imageTagFilter]);
     }
+    searchActions.setQuery("");
     searchActions.executeVerticalQuery();
     handleModalClose();
   };
