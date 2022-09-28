@@ -38,7 +38,9 @@ export const callGoogleVisionApi = async (
 };
 
 // function that uploads an image to cloudinary and returns the url
-export const uploadImage = async (file: File): Promise<string | null> => {
+export const uploadImageToCloudinary = async (
+  file: File
+): Promise<string | null> => {
   try {
     const formData = new FormData();
     formData.append("file", file);

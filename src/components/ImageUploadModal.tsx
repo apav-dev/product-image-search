@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import * as React from "react";
 import { ChangeEvent, Fragment, useEffect, useState } from "react";
 import classNames from "classnames";
-import { callGoogleVisionApi, uploadImage } from "../utils/api";
+import { callGoogleVisionApi, uploadImageToCloudinary } from "../utils/api";
 import {
   SelectableStaticFilter,
   Matcher,
@@ -22,7 +22,7 @@ export interface ImageUploadModalProps {
 
 const ImageUploadModal = ({ isOpen, setIsOpen }: ImageUploadModalProps) => {
   const [urlInput, setUrlInput] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState<string | null>("");
   const [localImage, setLocalImage] = useState<File | null>(null);
   const [fileUpload, setFileUpload] = useState(true);
   const [imageTags, setImageTags] = useState<string[]>([]);
@@ -46,7 +46,7 @@ const ImageUploadModal = ({ isOpen, setIsOpen }: ImageUploadModalProps) => {
 
   useEffect(() => {
     if (localImage) {
-      uploadImage(localImage).then((url) => {
+      uploadImageToCloudinary(localImage).then((url) => {
         setImageUrl(url);
       });
     }
